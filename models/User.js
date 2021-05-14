@@ -26,7 +26,7 @@ const userSchema = mongoose.Schema({
     token:{ //유효성 관리
         type: String
     },
-    tokenExp:{
+    tokenExp:{ // 유효성 기간
         type:Number
     }
 
