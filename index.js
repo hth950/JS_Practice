@@ -3,8 +3,10 @@ const express = require('express')
 // 새로운 express 앱을 만듬
 const app = express()
 const port = 5000
-const bodyParser = require('body-parser')
-const {User} = require('./models/User')
+const bodyParser = require('body-parser');
+const {User} = require('./models/User');
+
+const config = require('./config/key');
 
 //bodyParser 에서 오는 정보를 서버에서 분석할 수 있도록
 //application/x-www-form-urlencoded 를 분석
@@ -14,15 +16,13 @@ app.use(bodyParser.json());
 
 //몽고DB 와 연결
 const mongoose = require('mongoose')
-mongoose.connect('mongodb+srv://Hwang:xoghks1@boilerplate.wunuo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false
 }).then(() => console.log('MongoDB Connected...'))
 .catch(err => console.log(err))
 
-
-
 // 루트 디렉토리에 오면 출력
-app.get('/', (req, res) => res.send('Hello World! 안녕하세요~'))
+app.get('/', (req, res) => res.send('Hello World! 안녕하세요~ 주인님~'))
 
 app.post('/register', (req, res) => {
 
@@ -38,7 +38,6 @@ app.post('/register', (req, res) => {
         })
     })
 })
-
 
 // 포트 5000 에서 실행
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
