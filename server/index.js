@@ -26,6 +26,8 @@ mongoose.connect(config.mongoURI, {
 // 루트 디렉토리에 오면 출력
 app.get('/', (req, res) => res.send('Hello World! 안녕하세요~ 주인님~'))
 
+app.get('/api/hello', (req, res) => res.send("안녕하세요~ 케케케"))
+
 //Register Route
 app.post('/api/users/register', (req, res) => {
 
